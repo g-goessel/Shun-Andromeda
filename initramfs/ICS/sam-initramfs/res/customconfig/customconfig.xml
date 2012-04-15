@@ -50,7 +50,7 @@
   </settingsTab>
 
   <settingsTab name="GPU">
-    <settingsPane description="GPU Frequency Settings. Normally, our device has 2 frequency steps. SiyahKernel has three steps but the third step is not enabled as default. The defaults are 160,267 and 267. Voltage defaults are 950mV, 1000mV and 1000mV." name="GPUFreq">
+    <settingsPane description="GPU Frequency Settings. Normally, our device has 2 frequency steps. Shun Kernel has three steps but the third step is not enabled as default. The defaults are 160,267 and 267. Voltage defaults are 950mV, 1000mV and 1000mV." name="GPUFreq">
       <spinner description="Changes the first (lowest) GPU frequency step" name="GPU Freq Step1" action="gpu-freq 1">
              <spinnerItem name="400MHz" value="400"/> 
              <spinnerItem name="267MHz" value="267"/> 
@@ -128,8 +128,9 @@
     <settingsPane description="Other Settings" name="Other Settings">
        <seekBar description="User adjustable gamma shift." 
 		name="Gamma Shift" action="generic /sys/devices/platform/samsung-pd.2/s3cfb.0/spi_gpio.3/spi3.0/lcd/panel/user_gamma_adjust" unit=" pixel" min="-50" reversed="false" step="1" max="50"/>
-       <seekBar description="Vibration intensity level (default 6)" 
-		name="Vibration Intensity" action="generic /sys/devices/platform/tspdrv/vibrator_level" unit=" pixel" min="0" reversed="false" step="1" max="6"/>
+       <!-- seekBar description="Vibration intensity level (default 6)" 
+		name="Vibration Intensity" action="generic /sys/devices/platform/tspdrv/vibrator_level" unit=" pixel" min="0" reversed="false" step="1" max="6"/ -->
+       <checkbox description="Check this to activate BLN without wakelocks. Keep in mind that this setting may prevent backlight notification blinking or any other advanced features to work." name="BLN w/o Wakelock" action="generic /sys/class/misc/backlightnotification/blnww" label="BLN w/o Wakelock"/>
     </settingsPane>
   </settingsTab>
 
@@ -143,7 +144,6 @@
              <spinnerItem name="800MHz" value="800000"/> 
              <spinnerItem name="500MHz" value="500000"/> 
              <spinnerItem name="200MHz" value="200000"/> 
-             <spinnerItem name="100MHz" value="100000"/> 
       </spinner>
       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor">
              <spinnerItem name="ondemand" value="ondemand"/> 
@@ -162,8 +162,8 @@
       </spinner>
       <spinner description="Charge current setting" name="Charge Current" action="chargecurrent">
              <spinnerItem name="AC:650mA, Misc,USB:450mA (Stock)" value="1"/> 
-             <spinnerItem name="AC:800mA, Misc:650mA, USB:450mA" value="2"/> 
-             <spinnerItem name="AC:950mA, Misc:650mA, USB:450mA" value="3"/> 
+             <spinnerItem name="AC,Misc:650mA, USB:450mA" value="2"/> 
+             <spinnerItem name="All:650mA (risky for USB ports)" value="3"/> 
       </spinner>
       <button description="If you think that the fuel gauge chip is behaving weird use this button to reset it. Give it a few hours after you reset the gauge. It may still show you funny values for those period, then the battery percentage should be fine." name="Reset Fuel-Gauge Chip" action="reset-fuelgauge" label="Reset Fuel-Gauge Chip"/>
     </settingsPane>
