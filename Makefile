@@ -560,10 +560,18 @@ endif # $(dot-config)
 # Defaults to vmlinux, but the arch makefile usually adds further targets
 all: vmlinux
 
+ifdef CONFIG_CC_OPTIMIZE_FOR_FAST
+KBUILD_CFLAGS	+= -Ofast -DCONFIG_CC_OPTIMIZE_FOR_SPEED
+else
+ifdef CONFIG_CC_OPTIMIZE_FOR_SPEED
+KBUILD_CFLAGS	+= -O3 -DCONFIG_CC_OPTIMIZE_FOR_SPEED
+else
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
 else
 KBUILD_CFLAGS	+= -O2
+endif
+endif
 endif
 
 ifdef CONFIG_CC_CHECK_WARNING_STRICTLY
